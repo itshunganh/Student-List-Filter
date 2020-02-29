@@ -56,8 +56,6 @@ public class Controller implements Initializable
                         "StuAge INT," +
                         "StuMajor CHAR(50)," +
                         "StuGPA FLOAT(10,2));");
-
-                msgLabel.setText("TABLE CREATED");
             }
             catch (Exception ex)
             {
@@ -83,7 +81,7 @@ public class Controller implements Initializable
                 stmt.executeUpdate(sql);
             }
 
-            msgLabel.setText("TABLE FILLED");
+            msgLabel.setText("TABLE CREATED & FILLED");
 
             stmt.close();
             conn.close();
@@ -103,6 +101,7 @@ public class Controller implements Initializable
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
             stmt.execute("DROP TABLE Student");
+            studentListView.getItems().clear();
             stmt.close();
             conn.close();
             msgLabel.setText("TABLE DROPPED");
