@@ -12,10 +12,7 @@ import javafx.scene.control.Label;
 
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -32,7 +29,7 @@ public class Controller implements Initializable
     @FXML
     JFXButton dropBtn;
     @FXML
-    JFXButton loadBtn;
+    JFXButton displayBtn;
     @FXML
     JFXListView studentListView;
     @FXML
@@ -43,8 +40,8 @@ public class Controller implements Initializable
 
     private void createTable(String url)
     {
-        try{
-
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             try
@@ -90,13 +87,15 @@ public class Controller implements Initializable
         catch (Exception ex)
         {
             String msg = ex.getMessage();
-            msgLabel.setText(msg);
+            msgLabel.setText("TABLE NOT CREATED");
+            System.out.println(msg);
         }
     }
 
     private void deleteTable(String url)
     {
-        try{
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
@@ -110,35 +109,20 @@ public class Controller implements Initializable
         {
             String msg = ex.getMessage();
             msgLabel.setText("TABLE NOT DROPPED");
-            msgLabel.setText(msg);
+            System.out.println(msg);
         }
     }
 
-    private void loadData(String url)
+    private void displayTable(String url)
     {
-        try{
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
             String sqlStatement = "SELECT StuID, StuName, StuAge, StuMajor, StuGPA FROM Student";
-            ResultSet result = stmt.executeQuery(sqlStatement);
-            ObservableList<Student> studentDBlist = FXCollections.observableArrayList();
-
-            while (result.next())
-            {
-
-                Student student = new Student();
-                student.stuID = UUID.fromString(result.getString("StuID"));
-                student.stuName = result.getString("StuName");
-                student.stuAge = result.getInt("StuAge");
-                student.stuMajor = result.getString("StuMajor");
-                student.stuGPA = result.getDouble("StuGPA");
-
-                studentDBlist.add(student);
-            }
-
-            studentListView.setItems(studentDBlist);
-            msgLabel.setText("DATA LOADED");
+            queryResult(stmt, sqlStatement);
+            msgLabel.setText("TABLE DISPLAYED");
 
             stmt.close();
             conn.close();
@@ -146,72 +130,41 @@ public class Controller implements Initializable
         catch (Exception ex)
         {
             String msg = ex.getMessage();
-            msgLabel.setText("DATA NOT LOADED");
-            msgLabel.setText(msg);
+            msgLabel.setText("TABLE NOT DISPLAYED");
+            System.out.println(msg);
         }
     }
 
     private void filter1(String url)
     {
-        try{
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
-            String sqlStatement = "SELECT * FROM Student WHERE StuMajor = 'CIS';";
-            ResultSet result = stmt.executeQuery(sqlStatement);
-            ObservableList<Student> studentDBlist = FXCollections.observableArrayList();
-
-            while (result.next())
-            {
-
-                Student student = new Student();
-                student.stuID = UUID.fromString(result.getString("StuID"));
-                student.stuName = result.getString("StuName");
-                student.stuAge = result.getInt("StuAge");
-                student.stuMajor = result.getString("StuMajor");
-                student.stuGPA = result.getDouble("StuGPA");
-
-                studentDBlist.add(student);
-            }
-
-            studentListView.setItems(studentDBlist);
+            String cisQuery = "SELECT * FROM Student WHERE StuMajor = 'CIS';";
+            queryResult(stmt, cisQuery);
             msgLabel.setText("CIS STUDENTS FILTERED");
-
             stmt.close();
             conn.close();
         }
         catch (Exception ex)
         {
             String msg = ex.getMessage();
-            msgLabel.setText("DATA NOT LOADED");
-            msgLabel.setText(msg);
+            msgLabel.setText("NOT FILTERED");
+            System.out.println(msg);
         }
     }
 
     private void filter2(String url)
     {
-        try{
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
-            String sqlStatement = "SELECT * FROM Student WHERE StuAge > 21;";
-            ResultSet result = stmt.executeQuery(sqlStatement);
-            ObservableList<Student> studentDBlist = FXCollections.observableArrayList();
-
-            while (result.next())
-            {
-
-                Student student = new Student();
-                student.stuID = UUID.fromString(result.getString("StuID"));
-                student.stuName = result.getString("StuName");
-                student.stuAge = result.getInt("StuAge");
-                student.stuMajor = result.getString("StuMajor");
-                student.stuGPA = result.getDouble("StuGPA");
-
-                studentDBlist.add(student);
-            }
-
-            studentListView.setItems(studentDBlist);
+            String ageQuery = "SELECT * FROM Student WHERE StuAge > 21;";
+            queryResult(stmt, ageQuery);
             msgLabel.setText("21+ YEARS OLD STUDENTS FILTERED");
 
             stmt.close();
@@ -220,35 +173,20 @@ public class Controller implements Initializable
         catch (Exception ex)
         {
             String msg = ex.getMessage();
-            msgLabel.setText("DATA NOT LOADED");
-            msgLabel.setText(msg);
+            msgLabel.setText("NOT FILTERED");
+            System.out.println(msg);
         }
     }
 
     private void filter3(String url)
     {
-        try{
+        try
+        {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute("USE haphw2;");
-            String sqlStatement = "SELECT * FROM Student WHERE StuGPA > 3.0;";
-            ResultSet result = stmt.executeQuery(sqlStatement);
-            ObservableList<Student> studentDBlist = FXCollections.observableArrayList();
-
-            while (result.next())
-            {
-
-                Student student = new Student();
-                student.stuID = UUID.fromString(result.getString("StuID"));
-                student.stuName = result.getString("StuName");
-                student.stuAge = result.getInt("StuAge");
-                student.stuMajor = result.getString("StuMajor");
-                student.stuGPA = result.getDouble("StuGPA");
-
-                studentDBlist.add(student);
-            }
-
-            studentListView.setItems(studentDBlist);
+            String gpaQuery = "SELECT * FROM Student WHERE StuGPA > 3.0;";
+            queryResult(stmt, gpaQuery);
             msgLabel.setText("3.0+ GPA STUDENTS FILTERED");
 
             stmt.close();
@@ -257,11 +195,25 @@ public class Controller implements Initializable
         catch (Exception ex)
         {
             String msg = ex.getMessage();
-            msgLabel.setText("DATA NOT LOADED");
-            msgLabel.setText(msg);
+            msgLabel.setText("NOT FILTERED");
+            System.out.println(msg);
         }
     }
 
+    public void queryResult(Statement stmt, String sqlStatement) throws SQLException {
+        ResultSet result = stmt.executeQuery(sqlStatement);
+        ObservableList<Student> studentDBList = FXCollections.observableArrayList();
+        while (result.next()) {
+            Student student = new Student();
+            student.stuName = result.getString("StuName");
+            student.stuID = UUID.fromString(result.getString("StuID"));
+            student.stuAge = result.getInt("StuAge");
+            student.stuMajor = result.getString("StuMajor");
+            student.stuGPA = result.getDouble("StuGPA");
+            studentDBList.add(student);
+        }
+        studentListView.setItems(studentDBList);
+    }
 
 
     @Override
@@ -283,13 +235,14 @@ public class Controller implements Initializable
             }
         });
 
-        loadBtn.setOnAction(new EventHandler<ActionEvent>()
+        displayBtn.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event) {
-                loadData(AWS_URL);
+                displayTable(AWS_URL);
             }
         });
+
 
         cisMajor.setOnAction(new EventHandler<ActionEvent>()
         {

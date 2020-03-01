@@ -36,41 +36,6 @@
             </VBox>
             <VBox prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #142f44;">
                <children>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="130.0" text="FILTERS" textAlignment="CENTER" textFill="#f5e8d8">
-                     <font>
-                        <Font name="Cambria Bold" size="20.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin></Label>
-                  <JFXButton fx:id="cisMajor" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="CIS MAJOR" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
-                     <font>
-                        <Font name="Cambria Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="over21" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="OVER 21" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
-                     <font>
-                        <Font name="Cambria Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="gpa3Plus" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="OVER 3.0" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
-                     <font>
-                        <Font name="Cambria Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </JFXButton>
-               </children>
-            </VBox>
-            <VBox prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #142f44;">
-               <children>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="130.0" text="SELECTIONS" textAlignment="CENTER" textFill="#f5e8d8">
                      <font>
                         <Font name="Cambria Bold" size="20.0" />
@@ -86,7 +51,7 @@
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin></JFXButton>
-                  <JFXButton fx:id="loadBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="LOAD" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
+                  <JFXButton fx:id="displayBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="DISPLAY" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
                      <font>
                         <Font name="Cambria Bold" size="16.0" />
                      </font>
@@ -101,6 +66,53 @@
                         <Insets />
                      </VBox.margin></JFXButton>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #142f44;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="130.0" text="FILTERS" textAlignment="CENTER" textFill="#f5e8d8">
+                     <font>
+                        <Font name="Cambria Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Label>
+                  <JFXButton fx:id="cisMajor" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="CIS MAJOR" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
+                     <font>
+                        <Font name="Cambria Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="over21" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="OVER 21" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
+                     <font>
+                        <Font name="Cambria Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="gpa3Plus" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" ripplerFill="#f5e8d8" style="-fx-border-color: #dac6b4;" text="OVER 3.0" textAlignment="CENTER" textFill="#dac6b4" viewOrder="25.0">
+                     <font>
+                        <Font name="Cambria Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>
