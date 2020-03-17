@@ -1,6 +1,5 @@
 package sample;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +8,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
-
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -35,7 +32,7 @@ public class Controller implements Initializable
     @FXML
     Label msgLabel;
 
-    final String AWS_URL = "jdbc:mysql://haphw2.cstctc64fqwk.us-east-1.rds.amazonaws.com:3306/?user=admin&password=11223344";
+    final String AWS_URL = "jdbc:mysql://hap.cstctc64fqwk.us-east-1.rds.amazonaws.com:3306/hw2?user=admin&password=11223344";
 
 
     private void createTable(String url)
@@ -46,7 +43,6 @@ public class Controller implements Initializable
             Statement stmt = conn.createStatement();
             try
             {
-                stmt.execute("USE haphw2;");
                 stmt.execute("CREATE TABLE Student ("+
                         "StuID VARCHAR(50)," +
                         "StuName CHAR(50)," +
@@ -98,7 +94,6 @@ public class Controller implements Initializable
         {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE haphw2;");
             stmt.execute("DROP TABLE Student");
             studentListView.getItems().clear();
             stmt.close();
@@ -119,7 +114,6 @@ public class Controller implements Initializable
         {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE haphw2;");
             String sqlStatement = "SELECT StuID, StuName, StuAge, StuMajor, StuGPA FROM Student";
             queryResult(stmt, sqlStatement);
             msgLabel.setText("TABLE DISPLAYED");
@@ -141,7 +135,6 @@ public class Controller implements Initializable
         {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE haphw2;");
             String cisQuery = "SELECT * FROM Student WHERE StuMajor = 'CIS';";
             queryResult(stmt, cisQuery);
             msgLabel.setText("CIS STUDENTS FILTERED");
@@ -162,7 +155,6 @@ public class Controller implements Initializable
         {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE haphw2;");
             String ageQuery = "SELECT * FROM Student WHERE StuAge > 21;";
             queryResult(stmt, ageQuery);
             msgLabel.setText("21+ YEARS OLD STUDENTS FILTERED");
@@ -184,7 +176,6 @@ public class Controller implements Initializable
         {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
-            stmt.execute("USE haphw2;");
             String gpaQuery = "SELECT * FROM Student WHERE StuGPA > 3.0;";
             queryResult(stmt, gpaQuery);
             msgLabel.setText("3.0+ GPA STUDENTS FILTERED");
